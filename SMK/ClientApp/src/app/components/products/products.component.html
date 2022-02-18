@@ -1,0 +1,16 @@
+<div class="products-content">
+  <div *ngIf="products; else steelLoading">
+    <div>
+      <h5 class="category-name">{{ getCurrentCategory() }}</h5>
+      <hr class="my-4" />
+    </div>
+    <div class="d-flex justify-content-center flex-wrap">
+      <div *ngFor="let item of products">
+        <app-product-card [product]="item"></app-product-card>
+      </div>
+    </div>
+  </div>
+  <ng-template #steelLoading>
+    <div class="text-center">загрузка...</div>
+  </ng-template>
+</div>

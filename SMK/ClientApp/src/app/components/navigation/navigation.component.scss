@@ -1,0 +1,17 @@
+nav {
+  background-color: #e31e24;
+  color: #efefef;
+
+  li {
+    cursor: pointer;
+
+    a {
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+  }
+}
+
+.collapsed-button-label {
+  font-size: .9rem;
+}

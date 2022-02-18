@@ -1,0 +1,100 @@
+<div *ngIf="product" class="product">
+  <div class="product-title">
+<!--    <div class="back-button-block">-->
+<!--      <a class="back-button" (click)="comeBack()">-->
+<!--        Назад-->
+<!--      </a>-->
+<!--    </div>-->
+    <div class="title-block">
+      <span class="span-title">
+        {{ product.title }}
+      </span>
+    </div>
+<!--    <div class="settings-button">-->
+<!--      <div class="dropdown dropleft" *ngIf="isAuthorized()">-->
+<!--        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"-->
+<!--                aria-haspopup="true" aria-expanded="false">-->
+<!--          <i class="fas fa-cog"></i>-->
+<!--        </button>-->
+<!--        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">-->
+<!--          &lt;!&ndash; <a class="dropdown-item" href="#">Редактировать</a> &ndash;&gt;-->
+<!--          <a class="dropdown-item" (click)="deleteProduct()">Удалить</a>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      &lt;!&ndash; <span>-->
+<!--        {{ product.price }}-->
+<!--      </span> &ndash;&gt;-->
+<!--    </div>-->
+  </div>
+  <hr>
+  <div class="product-content">
+    <div class="gallery-block content-child" *ngIf="imagesNumber">
+      <div class="big-image">
+        <div class="image" *ngIf="images">
+          <img [src]="images[chosenImage]" (click)="openFullscreenImage()" alt=""/>
+        </div>
+      </div>
+      <div class="all-images">
+        <div class="image-mini" *ngFor="let img of images">
+          <img
+            alt=""
+            [src]="img"
+            (click)="chooseImage(images.indexOf(img))"
+            (mouseenter)="chooseImage(images.indexOf(img))"
+            (mouseleave)="chooseImage(chosenImage)"
+            [ngClass]="{
+              'current-mini-image': chosenImage === images.indexOf(img),
+              'low-opacity': chosenImage !== images.indexOf(img)
+            }"
+          />
+        </div>
+        <!-- <app-image *ngFor="let imgIndex of [].constructor(imagesNumber); let i = index"
+          [url]="product.imagesPath"
+          [number]="i"
+        ></app-image> -->
+      </div>
+    </div>
+    <div class="content-child price-block">
+      <div class="jumbotron shadow">
+        <h2 class="text-center font-weight-bold">{{ product.price + 'р.' }}</h2>
+        <hr class="my-4"/>
+
+        <p class="lead" style="font-size: 16px;">
+          Для информации обращаться по телефону:<br>
+          +7 (905) 972-99-99
+        </p>
+        <!--<hr class="my-4">
+        <p>Тел. +7 56564 1316 46</p>
+        <p class="lead">Тел. +7 56564 1316 46</p>-->
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="description-block">
+    <div class="product-description">
+      <div class="title">Описание</div>
+      <hr class="4"/>
+      <div class="description" [innerHTML]="product.description"></div>
+    </div>
+  </div>
+</div>
+<div *ngIf="toggleFullscreenGallery" class="fullscreen-gallery">
+  <div class="fullscreen-gallery-previous" (click)="previousFullscreenImage()">
+    <i class="fas fa-chevron-left"></i>
+  </div>
+  <div class="fullscreen-gallery-images">
+    <div class="fullscreen-gallery-image">
+      <img alt="" [src]="images[this.currentFullscreenImage]">
+    </div>
+  </div>
+  <div class="fullscreen-gallery-right-block" style="height: 100%; min-width: 100px;">
+    <div (click)="closeFullscreenGallery()" class="fullscreen-gallery-close-button">
+      <span>
+        <i class="fas fa-times"></i>
+      </span>
+    </div>
+    <div class="fullscreen-gallery-next" (click)="nextFullscreenImage()">
+      <span class="text"><i class="fas fa-chevron-right"></i></span>
+    </div>
+  </div>
+</div>
